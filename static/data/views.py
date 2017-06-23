@@ -55,20 +55,19 @@ def upload():
         filename = "my_promoters_to_test.fa"
     elif select == "user_choose":
         file = request.files['user_input']
-        if not allowed_file(file.filename):
-            return render_template("error.html")
-        else:
-            filename = secure_filename(file.filename)
-            print("filename:")
-            print(filename)
-            target_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            file.save(target_file_path)
-    else:
-        file = None
+        #if not allowed_file(file.filename):
+            #return render_template('file_error.html')
+        #else:
+        filename = secure_filename(file.filename)
+        print("filename:")
+        print(filename)
+        target_file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(target_file_path)
+    #else:
+        #file = None
 
-    if not file:
-        return render_template("error.html")
-    
+    #if not file:
+        #return render_template('file_error.html')
     target = app.config['UPLOAD_FOLDER']
     user_file = os.path.join(target, filename)
     
